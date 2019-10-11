@@ -38,6 +38,14 @@ class Ethnicity(Enum):
     white = 'White'
 
 
+class Generation(Enum):
+    """Define a person's generational title."""
+
+    undefined = ''
+    jr = 'jr'
+    sr = 'sr'
+
+
 # @dataclass(config=DataclassConfig)
 class Fatality(BaseModel):
     """Define a a person who died in a crash."""
@@ -47,7 +55,7 @@ class Fatality(BaseModel):
     ethnicity: Ethnicity = Ethnicity.undefined
     first: str = ''
     gender: Gender = Gender.undefined
-    generation: str = ''
+    generation: Generation = Generation.undefined
     last: str = ''
     middle: str = ''
 

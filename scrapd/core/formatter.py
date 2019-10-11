@@ -45,6 +45,7 @@ def json_serializers(obj):
         model.Ethnicity: lambda x: x.value,
         model.Fatality: lambda x: x.dict(),
         model.Gender: lambda x: x.value,
+        model.Generation: lambda x: x.value,
         model.Report: lambda x: x.dict(),
     }
     try:
