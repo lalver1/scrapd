@@ -287,9 +287,9 @@ class TestFatality:
         'input_,expected',
         [pytest.param(s['ethnicity'], s['expected'], id=s['id']) for s in ethnicity_scenarios],
     )
-    def test_parse_ethinicity(self, input_, expected):
+    def test_parse_ethnicity(self, input_, expected):
         """Ensure a victim's ethnicity is parsed."""
-        actual = deceased.parse_ethinicity(input_)
+        actual = deceased.parse_ethnicity(input_)
         assert actual == expected
 
     # @pytest.mark.parametrize(

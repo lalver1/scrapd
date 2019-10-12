@@ -28,7 +28,7 @@ class Name:
     """Represent a victim's full name."""
 
     first: str = ''
-    generation: str = ''
+    generation: model.Generation = model.Generation.undefined
     last: str = ''
     middle: str = ''
 
@@ -81,8 +81,11 @@ def parse_name(full_name):
 
     # Find the generation if any.
     for i, item in enumerate(clean_split_name):
-        if item.lower() in GENERATIONAL_TITLES:
-            n.generation = clean_split_name.pop(i).strip()
+        if item.lower() in GENERATIONAL_TITLES[0:2]:
+            n.generation = model.Generation.jr
+            break
+        if item.lower() in GENERATIONAL_TITLES[2:4]:
+            n.generation = model.Generation.sr
             break
 
     # Extract the name values.
@@ -125,7 +128,7 @@ def parse_gender(gender):
         return model.Gender.undefined
 
 
-def parse_ethinicity(ethnicity):
+def parse_ethnicity(ethnicity):
     """
     Parse victim's ethnicity.
 
@@ -170,7 +173,7 @@ def parse_fleg(fleg):
     # Try to pop out the results one by one. If pop fails, it means there is nothing left to retrieve.
     try:
         d[Fields.GENDER] = parse_gender(fleg.pop())
-        d[Fields.ETHNICITY] = parse_ethinicity(fleg.pop())
+        d[Fields.ETHNICITY] = parse_ethnicity(fleg.pop())
     except IndexError:
         pass
 
